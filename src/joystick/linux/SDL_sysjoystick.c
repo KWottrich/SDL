@@ -1409,7 +1409,7 @@ static SDL_sensorlist_item *GetSensor(SDL_joylist_item *item)
     if (fd_item < 0) {
         return NULL;
     }
-    if (ioctl(fd_item, EVIOCGUNIQ(sizeof(uniq_item) - 1), &uniq_item) < 0) {
+    if (ioctl(fd_item, EVIOCGPHYS(sizeof(uniq_item) - 1), &uniq_item) < 0) {
         return NULL;
     }
     close(fd_item);
@@ -1430,7 +1430,7 @@ static SDL_sensorlist_item *GetSensor(SDL_joylist_item *item)
         if (fd_sensor < 0) {
             continue;
         }
-        if (ioctl(fd_sensor, EVIOCGUNIQ(sizeof(uniq_sensor) - 1), &uniq_sensor) < 0) {
+        if (ioctl(fd_sensor, EVIOCGPHYS(sizeof(uniq_sensor) - 1), &uniq_sensor) < 0) {
             close(fd_sensor);
             continue;
         }
